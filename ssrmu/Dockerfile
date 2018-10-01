@@ -11,11 +11,13 @@ ENV NODE_ID=0                     \
     API_INTERFACE=modwebapi       \
     WEBAPI_URL=https://zhaoj.in   \
     WEBAPI_TOKEN=glzjin           \
+    WEBAPI_OFFSET = 0             \
     MYSQL_HOST=127.0.0.1          \
     MYSQL_PORT=3306               \
     MYSQL_USER=ss                 \
     MYSQL_PASS=ss                 \
     MYSQL_DB=shadowsocks          \
+    MYSQL_OFFSET = 0              \
     REDIRECT=github.com           \
     FAST_OPEN=false
 
@@ -41,7 +43,7 @@ RUN  apk --no-cache add \
                         linux-headers         && \
      ln -s /usr/bin/python3 /usr/bin/python   && \
      ln -s /usr/bin/pip3    /usr/bin/pip      && \
-     git clone -b manyuser https://github.com/SakuraSa233/shadowsocks.git "/root/shadowsocks" --depth 1 && \
+     git clone -b manyuser https://github.com/willamblack/shadowsocks.git "/root/shadowsocks" --depth 1 && \
      cd  /root/shadowsocks                    && \
      pip install -r requirements.txt          && \
      rm -rf ~/.cache && touch /etc/hosts.deny && \
@@ -60,11 +62,13 @@ CMD cp apiconfig.py userapiconfig.py &&                                        c
     sed -i "s|API_INTERFACE = 'modwebapi'|API_INTERFACE = '${API_INTERFACE}'|" /root/shadowsocks/userapiconfig.py && \
     sed -i "s|WEBAPI_URL = 'https://zhaoj.in'|WEBAPI_URL = '${WEBAPI_URL}'|"   /root/shadowsocks/userapiconfig.py && \
     sed -i "s|WEBAPI_TOKEN = 'glzjin'|WEBAPI_TOKEN = '${WEBAPI_TOKEN}'|"       /root/shadowsocks/userapiconfig.py && \
+    sed -i "s|WEBAPI_OFFSET = 0|WEBAPI_OFFSET = ${WEBAPI_OFFSET}|"             /root/shadowsocks/userapiconfig.py && \
     sed -i "s|MYSQL_HOST = '127.0.0.1'|MYSQL_HOST = '${MYSQL_HOST}'|"          /root/shadowsocks/userapiconfig.py && \
     sed -i "s|MYSQL_PORT = 3306|MYSQL_PORT = ${MYSQL_PORT}|"                   /root/shadowsocks/userapiconfig.py && \
     sed -i "s|MYSQL_USER = 'ss'|MYSQL_USER = '${MYSQL_USER}'|"                 /root/shadowsocks/userapiconfig.py && \
     sed -i "s|MYSQL_PASS = 'ss'|MYSQL_PASS = '${MYSQL_PASS}'|"                 /root/shadowsocks/userapiconfig.py && \
     sed -i "s|MYSQL_DB = 'shadowsocks'|MYSQL_DB = '${MYSQL_DB}'|"              /root/shadowsocks/userapiconfig.py && \
+    sed -i "s|MYSQL_OFFSET = 0|MYSQL_OFFSET = ${MYSQL_OFFSET}|"                /root/shadowsocks/userapiconfig.py && \
     sed -i "s|\"redirect\": \"\"|\"redirect\": \"${REDIRECT}\"|"               /root/shadowsocks/user-config.json && \
     sed -i "s|\"fast_open\": false|\"fast_open\": ${FAST_OPEN}|"               /root/shadowsocks/user-config.json && \
     python /root/shadowsocks/server.py
