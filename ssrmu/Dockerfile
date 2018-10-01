@@ -11,13 +11,13 @@ ENV NODE_ID=0                     \
     API_INTERFACE=modwebapi       \
     WEBAPI_URL=https://zhaoj.in   \
     WEBAPI_TOKEN=glzjin           \
-    WEBAPI_OFFSET = 0             \
+    WEBAPI_OFFSET=0               \
     MYSQL_HOST=127.0.0.1          \
     MYSQL_PORT=3306               \
     MYSQL_USER=ss                 \
     MYSQL_PASS=ss                 \
     MYSQL_DB=shadowsocks          \
-    MYSQL_OFFSET = 0              \
+    MYSQL_OFFSET=0                \
     REDIRECT=github.com           \
     FAST_OPEN=false
 
