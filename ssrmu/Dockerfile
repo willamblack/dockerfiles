@@ -3,7 +3,7 @@ MAINTAINER FAN VINGA<fanalcest@gmail.com>
 
 ENV NODE_ID=0                     \
     SPEEDTEST=6                   \
-    CLOUDSAFE=0                   \
+    CLOUDSAFE=1                   \
     AUTOEXEC=0                    \
     ANTISSATTACK=0                \
     MU_SUFFIX=zhaoj.in            \
@@ -52,7 +52,7 @@ RUN  apk --no-cache add \
 WORKDIR /root/shadowsocks
 
 CMD cp apiconfig.py userapiconfig.py &&                                        cp   config.json  user-config.json && \
-    sed -i "s|NODE_ID = 1|NODE_ID = ${NODE_ID}|"                               /root/shadowsocks/userapiconfig.py && \
+    sed -i "s|NODE_ID = 0|NODE_ID = ${NODE_ID}|"                               /root/shadowsocks/userapiconfig.py && \
     sed -i "s|SPEEDTEST = 6|SPEEDTEST = ${SPEEDTEST}|"                         /root/shadowsocks/userapiconfig.py && \
     sed -i "s|CLOUDSAFE = 1|CLOUDSAFE = ${CLOUDSAFE}|"                         /root/shadowsocks/userapiconfig.py && \
     sed -i "s|AUTOEXEC = 0|AUTOEXEC = ${AUTOEXEC}|"                            /root/shadowsocks/userapiconfig.py && \
